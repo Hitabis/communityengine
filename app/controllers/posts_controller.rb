@@ -9,9 +9,6 @@ class PostsController < BaseController
     {:only => [:show], :options => configatron.simple_mce_options}
   end
 
-  cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
-  caches_action :show, :if => Proc.new{|c| !logged_in? }
 
   before_action :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
   before_action :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
