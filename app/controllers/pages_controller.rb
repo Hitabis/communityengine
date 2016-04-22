@@ -3,8 +3,6 @@ class PagesController < BaseController
     {:only => [:new, :edit, :update, :create ], :options => configatron.default_mce_options}
   end
 
-  cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]
-  caches_action :show, :if => Proc.new{|c| c.cache_action? }
 
   def cache_action?
     !logged_in? && controller_name.eql?('pages')
