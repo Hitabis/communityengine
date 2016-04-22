@@ -3,7 +3,6 @@ class TagsController < BaseController
   before_action :admin_required, :only => [:manage, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, :only => [:auto_complete_for_tag_name]
 
-  caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && params[:type].blank?
   end
